@@ -132,3 +132,26 @@ Par instrument : BTC 39 trades, +0,12 R ; EUR/USD 82, −0,13 ; GBP/USD 82, −0
 USD/CHF sont restés dans des fourchettes, et le swap coûte cher). En revanche, il marche **sur le BTC** quel que soit le
 réglage, grâce à ses tendances très longues. Cette observation est une **nouvelle hypothèse**, née de ces données : elle est
 écrite et testée à part (section 9), sur la période 2022 → fin des données, à laquelle personne n'a encore touché.
+
+## 9. Nouvelle hypothèse : cassure de Donchian sur le BTC seul (écrite avant le test)
+
+> Section commitée **avant** de regarder la période 2022 → fin des données, à laquelle personne n'a encore touché.
+
+**Hypothèse** : le suivi de tendance de type Donchian a un avantage sur le BTC, pas sur les paires de devises.
+
+**Pourquoi elle est plausible** : le BTC a des tendances beaucoup plus longues et plus fortes que les devises (2017, 2020–2021,
+2022 à la baisse, 2024 à la hausse). Sur 2015–2021, le résultat ne dépend pas d'un réglage précis : le R médian du BTC est de
++3,5 par trade sur 200 jeux de réglages tirés au hasard.
+
+**Pourquoi il faut rester prudent** : elle a été formulée **après** avoir vu les données 2015–2021, sur 17 trades seulement.
+
+**Règles** : exactement celles de S1 (canal d'entrée 55, sortie 20, stop 2 × ATR20), **sans aucun ajustement**, sur BTC/USD
+seul. Coûts de base : 0,2 % aller-retour et un swap de 20 %/an. Coûts de stress : 0,5 % et un swap de 40 %/an.
+
+**Test unique** : du 1ᵉʳ janvier 2022 à la fin des données Binance.
+
+**Critère de réussite** : R moyen **positif avec les coûts de base ET avec les coûts de stress**.
+
+**Ce que le résultat voudra dire** : avec environ 15 à 20 trades, même un succès ne **prouvera** pas l'avantage. Il ne fera que
+ne pas le réfuter. Un échec, en revanche, sera un argument fort contre l'hypothèse. Dans tous les cas, **pas de nouvel
+ajustement** sur cette période.
