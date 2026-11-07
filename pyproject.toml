@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "swing"
+version = "0.1.0"
+description = "Recherche de stratégies sur plusieurs jours (suivi de tendance), avec la bibliothèque fxbt"
+requires-python = ">=3.11"
+dependencies = [
+    "fxbt @ git+https://github.com/rbgt/algo-trading-intraday.git",
+    "numpy",
+    "pandas",
+    "pyarrow",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
