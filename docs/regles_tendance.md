@@ -86,3 +86,49 @@ la fin des données. Elle est réussie si le R moyen réuni est **positif** et q
   réunis et qu'on exige une t-stat.
 - **Chaque instrument est simulé avec son propre compte de 100 €.** On n'étudie pas ici un portefeuille avec plusieurs
   positions simultanées.
+
+## 8. Résultats (2015–2021) : **les deux stratégies sont rejetées**
+
+Tests lancés après le commit des règles (87a4fa6) et du code (647c346), sans modification.
+
+### S1, cassure de Donchian
+
+| Critère | Valeur | Rempli |
+|---|---|---|
+| 1. R moyen ≥ +0,05 | +0,161 | ✅ |
+| 2. t-stat ≥ 2,0 | 0,33 | ❌ |
+| 3. positif sur ≥ 3 instruments sur 4 | 1/4 | ❌ |
+| 4. ≥ 4 années positives sur 7 | 4/7 | ✅ |
+| 5. positif avec coûts de stress | −0,072 | ❌ |
+| 6. hasard qui fait mieux < 5 % | 33,9 % | ❌ |
+| 7. toutes les variantes positives | min. −0,108 | ❌ |
+
+Par instrument (trades, R moyen) : **BTC 17 trades, +4,35 R** ; EUR/USD 31, −0,31 ; GBP/USD 34, −0,45 ; USD/CHF 34, −0,90.
+Le swap coûte en moyenne 0,22 R par trade. Le R positif réuni vient **entièrement du BTC**, surtout de la tendance de 2020 (+44,9 R).
+
+### S2, momentum de série temporelle
+
+| Critère | Valeur | Rempli |
+|---|---|---|
+| 1. R moyen ≥ +0,05 | −0,121 | ❌ |
+| 2. t-stat ≥ 2,0 | −2,14 | ❌ |
+| 3. positif sur ≥ 3 instruments sur 4 | 1/4 | ❌ |
+| 4. ≥ 4 années positives sur 7 | 1/7 | ❌ |
+| 5. positif avec coûts de stress | −0,219 | ❌ |
+| 6. hasard qui fait mieux < 5 % | 75,5 % | ❌ |
+| 7. toutes les variantes positives | min. −0,149 | ❌ |
+
+Par instrument : BTC 39 trades, +0,12 R ; EUR/USD 82, −0,13 ; GBP/USD 82, −0,11 ; USD/CHF 82, −0,23.
+
+### Monte-Carlo sur les paramètres (200 jeux de réglages par stratégie)
+
+- **Momentum** : R réuni médian de −0,10, **0 %** des jeux positifs.
+- **Donchian** : R réuni médian de −0,07, 38 % des jeux positifs. Mais **0 %** des jeux sont positifs sur les trois paires
+  de devises (R médian : EUR/USD −0,42, GBP/USD −0,57, USD/CHF −1,05), alors que le **BTC a un R médian de +3,47** par trade.
+
+**La validation finale n'a pas lieu** : aucune stratégie ne remplit les 7 critères.
+
+**Ce qu'on apprend** : sur 2015–2021, le suivi de tendance ne marche **pas sur les paires de devises** (EUR/USD, GBP/USD et
+USD/CHF sont restés dans des fourchettes, et le swap coûte cher). En revanche, il marche **sur le BTC** quel que soit le
+réglage, grâce à ses tendances très longues. Cette observation est une **nouvelle hypothèse**, née de ces données : elle est
+écrite et testée à part (section 9), sur la période 2022 → fin des données, à laquelle personne n'a encore touché.
