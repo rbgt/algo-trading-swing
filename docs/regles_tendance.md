@@ -155,3 +155,25 @@ seul. Coûts de base : 0,2 % aller-retour et un swap de 20 %/an. Coûts de stres
 **Ce que le résultat voudra dire** : avec environ 15 à 20 trades, même un succès ne **prouvera** pas l'avantage. Il ne fera que
 ne pas le réfuter. Un échec, en revanche, sera un argument fort contre l'hypothèse. Dans tous les cas, **pas de nouvel
 ajustement** sur cette période.
+
+## 10. Résultat du test unique (BTC, 2022 → octobre 2026) : **échec, de justesse**
+
+| Coûts | Trades | R moyen | t-stat | Réussite | Swap moyen | Années positives |
+|---|---|---|---|---|---|---|
+| De base (0,2 % + swap 20 %/an) | 26 | **+0,309** | 0,86 | 38 % | 0,28 R | 4 / 5 |
+| De stress (0,5 % + swap 40 %/an) | 26 | **−0,017** | −0,05 | 31 % | 0,56 R | 1 / 5 |
+
+Le critère fixé à l'avance (R moyen positif avec les deux niveaux de coûts) **n'est pas rempli**.
+
+Lecture :
+- **Le profil est celui du suivi de tendance** : beaucoup de petites pertes (stops à environ −1 R), et quelques très gros gains
+  sur les grandes tendances (+3,2 R sur la baisse de 2022 ; +4,0, +3,3 et +4,8 R sur la hausse de fin 2023 à fin 2024).
+- **Le swap décide de tout** : 0,28 R par trade en moyenne avec les coûts de base, 0,56 R avec ceux de stress. Avant coûts,
+  le gain est d'environ +0,6 R par trade. Le résultat dépend donc surtout du coût de portage réel du broker.
+- **Le résultat reste fragile** : 26 trades et une t-stat de 0,86. Même avec les coûts de base, il pourrait être dû au hasard.
+
+**Piste pour la suite, sans réutiliser cette période** : le BTC acheté au comptant sur une plateforme d'échange ne paie pas
+de swap (seulement environ 0,1 % de frais par ordre), contrairement à un CFD. Mais la vente à découvert n'y est alors pas
+possible : ce serait une autre stratégie (achats seulement), donc une nouvelle hypothèse. La période 2022–2026 est
+maintenant utilisée pour cette idée : le seul test propre serait un **suivi en temps réel** (paper trading) à partir
+d'aujourd'hui, avec des règles fixées à l'avance.
