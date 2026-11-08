@@ -4,7 +4,7 @@ import pandas as pd
 from fxbt.data import daily_bars
 from fxbt.strategies.indicators import atr
 from swing.daily import daily_with_times
-from swing.strategies import donchian, tsmom
+from swing.strategies import donchian, smc, smc_ob, tsmom
 
 TZ = "Europe/Zurich"
 
@@ -63,3 +63,19 @@ def test_tsmom_direction_is_sign_of_12_month_performance():
     # Chaque trade se termine quand le suivant commence (1 minute avant son entrée).
     gaps = (sig["entry_time"].iloc[1:].to_numpy() - sig["deadline"].iloc[:-1].to_numpy())
     assert (gaps == np.timedelta64(1, "m")).all()
+
+
+def test_smc_swing_sweeps_previous_week_and_exits_after_hold_days():
+    m1 = synthetic_m1(days=400, seed=4)
+    d = daily_bars(m1)
+    week = d.index - pd.to_timedelta(d.index.day_of_week, unit="D")
+    weekly = d.groupby(week).agg(hi=("high", "max"), lo=("low", "min"))
+    for module in (smc, smc_ob):
+        p = module.Params()
+        sig = module.generate_signals(m1, p, "EURUSD")
+        assert len(sig) > 0
+        for s in sig.itertuples():
+            prev = weekly.loc[:smc.trading_date(pd.DatetimeIndex([s.entry_time]))[0]].iloc[-2]
+            # Le stop est au-delà de la liquidité de la semaine précédente (extrême du sweep, plus une marge).
+            assert s.stop_level < prev["lo"] if s.direction == 1 else s.stop_level > prev["hi"]
+            assert s.deadline == min(s.entry_time + pd.Timedelta(days=p.hold_days), m1.index[-1])

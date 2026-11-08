@@ -59,3 +59,28 @@ positif avec les coûts de stress, hasard qui fait mieux < 5 %, toutes les varia
 - Avec 100 € (ou même 1 000 €), les stops H4 en forex font souvent plus de 50 pips : la position réelle serait sous le
   micro-lot. Comme pour S1 et S2, le verdict se fait en R, avec une taille non arrondie.
 - Peu de setups attendus : au plus 2 par semaine et par instrument, avant les filtres.
+
+## 6. Résultat (2015–2021, 4 instruments, coûts de base, swap compris) : **S3 et S4 rejetées**
+
+Test lancé après le commit des règles ci-dessus, sans modification.
+
+| | S3 (FVG) | S4 (order block) |
+|---|---|---|
+| Trades (4 instruments réunis) | 119 | 80 |
+| R moyen net | +0,015 | −0,210 |
+| t-stat | +0,12 | −1,41 |
+| Réussite | 41 % | 30 % |
+| Par instrument (trades, R) | EUR/USD 37 · +0,15 ; GBP/USD 27 · −0,02 ; USD/CHF 40 · −0,01 ; BTC 15 · −0,18 | EUR/USD 22 · −0,27 ; GBP/USD 19 · −0,11 ; USD/CHF 27 · −0,16 ; BTC 12 · −0,38 |
+| Années positives | 5 / 7 | 2 / 7 |
+| Coûts de stress | −0,073 | −0,299 |
+| Hasard qui fait mieux | 19,9 % | 81,2 % |
+| Variantes (R réuni) | de −0,14 à +0,11 | toutes négatives (de −0,25 à −0,10) |
+| Critères remplis | 1 / 7 | 0 / 7 |
+
+- **S3** est à peu près à zéro : seul EUR/USD est positif, sur 37 trades, ce qui n'a pas de valeur statistique.
+  Le swap pèse environ 0,07 R par trade (0,13 R en stress), donc l'avantage brut est lui aussi proche de zéro.
+- **S4** perd sur les 4 instruments et dans toutes les variantes.
+- **Très peu de setups** : environ 4 trades par an et par instrument pour S3, 3 pour S4. Même un vrai avantage
+  serait difficile à distinguer du hasard sur 7 ans.
+
+La période 2022 → fin des données n'a pas été utilisée.

@@ -21,7 +21,11 @@ VARIANTS = {
     "donchian": [("entry_bars", 20), ("entry_bars", 100), ("exit_bars", 10), ("exit_bars", 40),
                  ("stop_atr", 1.5), ("stop_atr", 3.0)],
     "tsmom": [("lookback_months", 3), ("lookback_months", 6), ("stop_atr", 2.0), ("stop_atr", 5.0)],
+    "smc": [("swing_n", 1), ("swing_n", 3), ("reclaim_bars", 3), ("reclaim_bars", 12), ("choch_bars", 15),
+            ("choch_bars", 60), ("retest_bars", 6), ("retest_bars", 24), ("rr", 1.5), ("rr", 3.0),
+            ("hold_days", 7), ("hold_days", 28)],
 }
+VARIANTS["smc_ob"] = VARIANTS["smc"]
 
 
 def load(period: str, pairs=PAIRS):

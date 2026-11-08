@@ -40,6 +40,8 @@ tout test.
 |---|---|---|---|
 | `donchian` | Cassure du canal de 55 jours, sortie sur le canal de 20 jours, stop à 2 × ATR | +0,16 R, mais t = 0,33, positif seulement sur le BTC | Rejetée |
 | `tsmom` | Sens de la performance sur 12 mois, revu chaque mois | −0,12 R, 1 année positive sur 7 | Rejetée |
+| `smc` | SMC en H4 : sweep de la semaine précédente, CHoCH, entrée au retour dans le FVG | +0,015 R, t = 0,12, positif sur 1 instrument sur 4 | Rejetée |
+| `smc_ob` | Comme `smc`, avec entrée sur l'order block (définition ICT) | −0,21 R, 0 instrument positif | Rejetée |
 | Donchian sur le BTC seul | Nouvelle hypothèse, testée une fois sur 2022 → 2026 | +0,31 R avec les coûts de base, −0,02 R avec ceux de stress | Échec, de justesse |
 
 **À retenir** : le suivi de tendance ne marche pas sur les paires de devises en 2015–2021. Il semble marcher sur le BTC,
@@ -59,7 +61,7 @@ mais le coût de portage des CFD (swap) absorbe la moitié du gain, et l'échant
 ```
 src/swing/
 ├── daily.py             # bougies journalières, heure de clôture et heure d'exécution suivante
-├── strategies/          # donchian.py, tsmom.py (même interface que fxbt.strategies.base)
+├── strategies/          # donchian.py, tsmom.py, smc.py, smc_ob.py (même interface que fxbt.strategies.base)
 ├── evaluation.py        # périodes, coûts de stress, critères, test contre le hasard réuni, Monte-Carlo
 └── __main__.py          # ligne de commande
 docs/regles_tendance.md  # règles écrites avant le test, puis résultats
